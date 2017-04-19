@@ -1,1 +1,40 @@
-{     "devDependencies": {         "grunt-bower": "*",         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmtest-grunt-bower",     "homepage": "https://github.com/npmtest/node-npmtest-grunt-bower",     "repository": {         "type": "git",         "url": "https://github.com/npmtest/node-npmtest-grunt-bower.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "#### test coverage for  [grunt-bower (v0.21.4)](https://github.com/curist/grunt-bower)  [![npm package](https://img.shields.io/npm/v/npmtest-grunt-bower.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-grunt-bower) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-grunt-bower.svg)](https://travis-ci.org/npmtest/node-npmtest-grunt-bower)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "grunt-bower": "*",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmtest/node-npmtest-grunt-bower",
+    "keywords": [
+        "coverage",
+        "test",
+        "grunt-bower"
+    ],
+    "license": "MIT",
+    "main": "lib.npmtest_grunt_bower.js",
+    "name": "npmtest-grunt-bower",
+    "nameAlias": "npmtest_grunt_bower",
+    "nameOriginal": "npmtest-grunt-bower",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmtest/node-npmtest-grunt-bower.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "npm install \"kaizhu256/node-utility2#alpha\" && utility2 shDeployHeroku",
+        "postinstall": "[ ! -f npm_scripts.sh ] || ./npm_scripts.sh postinstall",
+        "start": "PORT=${PORT:-8080} utility2 start test.js",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "0.0.1"
+}
