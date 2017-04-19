@@ -1,0 +1,781 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-grunt-bower/node_modules/grunt-bower/tasks/bower.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-grunt-bower">npmtest-grunt-bower (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-grunt-bower/node_modules/grunt-bower/tasks/bower.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">1.11% <small>(1 / 90)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 73)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">1.11% <small>(1 / 90)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-grunt-bower/node_modules/grunt-bower/tasks/</a> » bower.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+ * grunt-bower
+ * https://github.com/curist/grunt-bower
+ *
+ * Copyright (c) 2012 curist
+ * Licensed under the MIT license.
+ */
+&nbsp;
+module.exports = <span class="fstat-no" title="function not covered">function(grunt) {</span>
+&nbsp;
+  // Please see the grunt documentation for more information regarding task and
+  // helper creation: https://github.com/gruntjs/grunt/blob/master/docs/toc.md
+&nbsp;
+  // ==========================================================================
+  // TASKS
+  // ==========================================================================
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var task_name = 'bower';</span>
+<span class="cstat-no" title="statement not covered">  var task_desc = 'Copy bower installed components to dist folder.';</span>
+<span class="cstat-no" title="statement not covered">  var _ = require('lodash');</span>
+<span class="cstat-no" title="statement not covered">  var path = require('path');</span>
+<span class="cstat-no" title="statement not covered">  var bower = require('bower');</span>
+<span class="cstat-no" title="statement not covered">  var log = grunt.log.write;</span>
+<span class="cstat-no" title="statement not covered">  var helpers = require('./lib/helpers').init(grunt);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  grunt.registerMultiTask(task_name, task_desc, <span class="fstat-no" title="function not covered">function() {</span></span>
+<span class="cstat-no" title="statement not covered">    var done = this.async();</span>
+<span class="cstat-no" title="statement not covered">    var targets = (this.file) ? [this.file] : this.files;</span>
+<span class="cstat-no" title="statement not covered">    var options = this.data.options || {};</span>
+<span class="cstat-no" title="statement not covered">    var stripAffix = options.stripJsAffix || options.stripAffix;</span>
+<span class="cstat-no" title="statement not covered">    var copyOptions = {</span>
+        process: options.process || null
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered">    bower.commands.list({paths: true, relative: false})</span>
+      .on('end',  <span class="fstat-no" title="function not covered">function (data) {</span>
+<span class="cstat-no" title="statement not covered">        _(data).each(<span class="fstat-no" title="function not covered">function(lib_path, lib_name) {</span></span>
+<span class="cstat-no" title="statement not covered">          var dest_file_path;</span>
+<span class="cstat-no" title="statement not covered">          var src_paths = helpers.getLibFilenames(</span>
+            lib_path,
+            bower.config.directory,
+            lib_name
+          );
+&nbsp;
+<span class="cstat-no" title="statement not covered">          try {</span>
+<span class="cstat-no" title="statement not covered">            if(options.ignorePackages) {</span>
+<span class="cstat-no" title="statement not covered">              if(!Array.isArray(options.ignorePackages)) {</span>
+<span class="cstat-no" title="statement not covered">                throw "`ignorePackages` is not an array";</span>
+              }
+<span class="cstat-no" title="statement not covered">              if(options.ignorePackages.indexOf(lib_name) != -1) {</span>
+<span class="cstat-no" title="statement not covered">                return;</span>
+              }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered">            if(src_paths.length == 0) {</span>
+<span class="cstat-no" title="statement not covered">              throw "no files";</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered">            targets.forEach(<span class="fstat-no" title="function not covered">function(target) {</span></span>
+<span class="cstat-no" title="statement not covered">              var dest = target.dest || path.join('public', 'scripts' ,'vendor');</span>
+<span class="cstat-no" title="statement not covered">              var dest_file_name;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">              var dests = helpers.getDests(target);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">              var package_dest = '';</span>
+<span class="cstat-no" title="statement not covered">              var package_dests = {};</span>
+<span class="cstat-no" title="statement not covered">              var package_opt = options.packageSpecific &amp;&amp;</span>
+                options.packageSpecific[lib_name];
+<span class="cstat-no" title="statement not covered">              var strip_glob_base = false;</span>
+<span class="cstat-no" title="statement not covered">              var relative_glob_expanded_path = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">              if(package_opt) {</span>
+<span class="cstat-no" title="statement not covered">                strip_glob_base = typeof package_opt.stripGlobBase !== 'undefined'</span>
+                    ? package_opt.stripGlobBase : options.stripGlobBase;
+<span class="cstat-no" title="statement not covered">                package_dest = package_opt.dest;</span>
+<span class="cstat-no" title="statement not covered">                package_dests = helpers.getDests(package_opt);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                if(_(package_opt.files).isArray()) {</span>
+                  // FIXME src_paths should be concat with the original src_paths
+<span class="cstat-no" title="statement not covered">                  src_paths = _(package_opt.files).reduce(<span class="fstat-no" title="function not covered">function(p, file) {</span></span>
+<span class="cstat-no" title="statement not covered">                    var full_path = path.join(bower.config.directory, lib_name, file);</span>
+<span class="cstat-no" title="statement not covered">                    if(/\*/.test(file)) {</span>
+                      // var glob_base = path.join(bower.config.directory, lib_name, file.replace(/\*.*$/, ''));
+                      // var glob_pattern = file.replace(/^[^\*]*/,'');
+<span class="cstat-no" title="statement not covered">                      var expanded_paths = grunt.file.expand({filter: 'isFile'}, full_path);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                      if(strip_glob_base) {</span>
+<span class="cstat-no" title="statement not covered">                        var glob_base = path.join(bower.config.directory, lib_name, file.replace(/\*.*$/, ''));</span>
+<span class="cstat-no" title="statement not covered">                        var glob_base_re = new RegExp('^' + glob_base.replace(/\\/g,'[\\\/]'));</span>
+<span class="cstat-no" title="statement not covered">                        expanded_paths.forEach(<span class="fstat-no" title="function not covered">function(expanded_path) {</span></span>
+<span class="cstat-no" title="statement not covered">                          var relatie_path = expanded_path.replace(glob_base_re, '');</span>
+<span class="cstat-no" title="statement not covered">                          relative_glob_expanded_path[expanded_path] = relatie_path;</span>
+                        });
+                      }
+<span class="cstat-no" title="statement not covered">                      return p.concat(expanded_paths);</span>
+&nbsp;
+                    } else {
+<span class="cstat-no" title="statement not covered">                      return p.concat(full_path);</span>
+                    }
+                  }, []);
+                }
+              }
+&nbsp;
+              // check if we want to strip file type affix in lib_name
+<span class="cstat-no" title="statement not covered">              var ext = src_paths[0].split('.').pop()</span>
+<span class="cstat-no" title="statement not covered">              if(stripAffix) {</span>
+<span class="cstat-no" title="statement not covered">                var regexp = new RegExp("\\W?" + ext + "$");</span>
+<span class="cstat-no" title="statement not covered">                dest_file_name = lib_name.replace(regexp, '') + '.' + ext;</span>
+              } else {
+<span class="cstat-no" title="statement not covered">                dest_file_name = lib_name + '.' + ext;</span>
+              }
+&nbsp;
+<span class="cstat-no" title="statement not covered">              var expanded_dir = '', file_name, ext_name, dest_dir;</span>
+<span class="cstat-no" title="statement not covered">              var flatten =</span>
+                (package_opt &amp;&amp; typeof package_opt.keepExpandedHierarchy != 'undefined')
+                ? !package_opt.keepExpandedHierarchy
+                : options.keepExpandedHierarchy === false;
+&nbsp;
+<span class="cstat-no" title="statement not covered">              if(!flatten) {</span>
+<span class="cstat-no" title="statement not covered">                expanded_dir = grunt.file.expand(path.join(bower.config.directory, lib_name)).shift();</span>
+              }
+<span class="cstat-no" title="statement not covered">              _.chain(src_paths).map(<span class="fstat-no" title="function not covered">function(src_path) {</span></span>
+<span class="cstat-no" title="statement not covered">                return grunt.file.expand(src_path);</span>
+              }).flatten().map(<span class="fstat-no" title="function not covered">function(src_path) {</span>
+<span class="cstat-no" title="statement not covered">                var baseDirRegex = new RegExp(bower.config.cwd.replace(/\\/g,'[\\\/]') + '/?');</span>
+<span class="cstat-no" title="statement not covered">                return src_path.replace(baseDirRegex, '');</span>
+              }).each(<span class="fstat-no" title="function not covered">function(src_path) {</span>
+<span class="cstat-no" title="statement not covered">                if (!flatten &amp;&amp; expanded_dir &amp;&amp; src_path.indexOf(expanded_dir) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered">                  file_name = src_path.replace(expanded_dir, '');</span>
+                } else {
+<span class="cstat-no" title="statement not covered">                  file_name = src_path.split(/[\\\/]/).pop();</span>
+                }
+<span class="cstat-no" title="statement not covered">                ext_name = file_name.split('.').pop();</span>
+<span class="cstat-no" title="statement not covered">                dest_dir = package_dests[ext_name] ||</span>
+                  dests[ext_name] || package_dest || dest;
+&nbsp;
+<span class="cstat-no" title="statement not covered">                var expand_option =</span>
+                  (package_opt &amp;&amp; typeof package_opt.expand != 'undefined')
+                    ? package_opt.expand
+                    : options.expand;
+&nbsp;
+<span class="cstat-no" title="statement not covered">                var real_file_name = file_name;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                if (!flatten &amp;&amp; strip_glob_base) {</span>
+<span class="cstat-no" title="statement not covered">                  if (relative_glob_expanded_path[src_path]) {</span>
+<span class="cstat-no" title="statement not covered">                    real_file_name = relative_glob_expanded_path[src_path]</span>
+                  }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered">                dest_file_path = path.join(</span>
+                  dest_dir,
+                  expand_option ? lib_name : '',
+                  real_file_name
+                );
+&nbsp;
+<span class="cstat-no" title="statement not covered">                try{</span>
+<span class="cstat-no" title="statement not covered">                  if (file_name &amp;&amp; grunt.file.isDir(src_path)) {</span>
+<span class="cstat-no" title="statement not covered">                    if (!flatten &amp;&amp; !expanded_dir) {</span>
+<span class="cstat-no" title="statement not covered">                      expanded_dir = src_path;</span>
+                    } else <span class="cstat-no" title="statement not covered">if (!flatten &amp;&amp; src_path.indexOf(expanded_dir) == -1) {</span>
+<span class="cstat-no" title="statement not covered">                      expanded_dir = '';</span>
+                    }
+                  } else <span class="cstat-no" title="statement not covered">if (file_name) {</span>
+<span class="cstat-no" title="statement not covered">                    grunt.file.copy(src_path, dest_file_path, copyOptions);</span>
+<span class="cstat-no" title="statement not covered">                    log(dest_file_path.cyan + ' copied.\n');</span>
+                  }
+                } catch(e) {
+<span class="cstat-no" title="statement not covered">                  log(('Fail to copy ').red +</span>
+                      src_path.yellow + (' for ').red +
+                      lib_name.yellow + ('!\n').red);
+                }
+              }).value();
+            });
+          } catch (err) {
+<span class="cstat-no" title="statement not covered">            log(err.stack);</span>
+<span class="cstat-no" title="statement not covered">            log(('Fail to copy lib file for ' + lib_name + '!\n').red);</span>
+          }
+        });
+<span class="cstat-no" title="statement not covered">        done();</span>
+      })
+      .on('error', <span class="fstat-no" title="function not covered">function (err) {</span>
+<span class="cstat-no" title="statement not covered">        grunt.fail.warn(err);</span>
+      });
+  });
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Wed Apr 19 2017 01:11:26 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
