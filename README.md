@@ -1,6 +1,6 @@
 # npmtest-grunt-bower
 
-#### test coverage for  [grunt-bower (v0.21.4)](https://github.com/curist/grunt-bower)  [![npm package](https://img.shields.io/npm/v/npmtest-grunt-bower.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-grunt-bower) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-grunt-bower.svg)](https://travis-ci.org/npmtest/node-npmtest-grunt-bower)
+#### basic test coverage for  [grunt-bower (v0.21.4)](https://github.com/curist/grunt-bower)  [![npm package](https://img.shields.io/npm/v/npmtest-grunt-bower.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-grunt-bower) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-grunt-bower.svg)](https://travis-ci.org/npmtest/node-npmtest-grunt-bower)
 
 #### Copy bower installed components to dist folder.
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-grunt-bower/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-grunt-bower/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-grunt-bower/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-grunt-bower/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-grunt-bower/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-grunt-bower/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-grunt-bower/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-grunt-bower/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-grunt-bower/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-grunt-bower/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-grunt-bower/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-grunt-bower/build/coverage.html/index.html)
 
@@ -86,7 +86,8 @@
     "scripts": {
         "test": "cd ./test/boilerplate && npm install && rm -rf node_modules/grunt-bower && ln -nfs ../../.. node_modules/grunt-bower && node run_test.js"
     },
-    "version": "0.21.4"
+    "version": "0.21.4",
+    "bin": {}
 }
 ```
 
